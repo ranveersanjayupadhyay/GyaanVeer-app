@@ -9,15 +9,16 @@ st.set_page_config(page_title="GyaanVeer", page_icon="📚")
 # 2. Function to set the background image and Liquid Glass styling
 def add_bg_from_local(image_file):
     with open(image_file, "rb") as file:
+        # Decode the bytes to a string so it can be used in the CSS
         encoded_string = base64.b64encode(file.read()).decode()
+        
     st.markdown(
-        f"""
+        f\"\"\"
         <style>
         .stApp {{
-             background-image: url("data:image/jpeg;base64,
-             {encoded_string}");
-             background-size: cover;
-             background-position: center;
+            background-image: url("data:image/jpeg;base64,{encoded_string}");
+            background-size: cover;
+            background-position: center;
         }}
         /* Add your Liquid Glass CSS styling here */
         .liquid-glass {{
@@ -28,10 +29,9 @@ def add_bg_from_local(image_file):
             border: 1px solid rgba(255, 255, 255, 0.2);
         }}
         </style>
-        """,
+        \"\"\",
         unsafe_allow_html=True
     )
-
 # Apply the background
 try:
     add_bg_from_local('bg.jpg')
