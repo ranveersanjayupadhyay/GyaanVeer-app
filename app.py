@@ -39,7 +39,7 @@ except Exception as e:
     st.warning("Please upload your image and name it 'bg.jpg'")
 
 # 3. The Invisible Spacer to push elements below the logo
-st.markdown("<br><br>", unsafe_allow_html=True)
+st.markdown("<div style='height: 450px;'></div>", unsafe_allow_html=True)
 st.markdown(" 👉[GET YOUR FREE API KEY HERE](https://aistudio.google.com/app/apikey)", unsafe_allow_html=True)
 api_key = st.text_input("ENTER YOUR GEMINI API KEY:", type="password")
 notes = st.text_area("PASTE YOUR STUDY NOTES HERE:", height=150)
@@ -49,7 +49,14 @@ if st.button("GENERATE MY STUDY GUIDE"):
       st.warning("PLEASE PROVIDE BOTH AN API KEY AND YOUR NOTES!")
    else:
       client = genai.Client(api_key=api_key)
-      prompt = f"Summarize the key concepts in bullet points, then create a 5-question multiple-choice quiz based on these notes. Notes: {notes}"
+      prompt = f"""Act as a friendly and encouraging Indian school teacher. I am providing you with my study notes below. 
+      First, break down the key concepts into 5 to 7 easy-to-understand bullet points. 
+      Then, create a simple 5-question multiple-choice quiz to test basic understanding. 
+      Where possible, frame the quiz questions using everyday Indian examples (e.g., using terms like local markets, chai, cricket, or local geography) to make the concepts easy to grasp.
+      Provide the correct answers at the bottom of the page hidden under an 'Answer Key' heading.
+
+      Notes: {notes}
+      """
       max_retries = 3
       wait_time = 2 
     
@@ -62,6 +69,10 @@ if st.button("GENERATE MY STUDY GUIDE"):
                 )
                 # Result box also styled as liquid glass
                 st.markdown(f"{response.text}", unsafe_allow_html=True)
+                st.markdown(
+                    f"<div class='liquid-glass'>{response.text}</div>",
+                    unsafe_allow_html=True
+                )
                 break
             except Exception as e:
                 if attempt < max_retries - 1:
