@@ -12,7 +12,32 @@ def add_bg_from_local(image_file):
         encoded_string = base64.b64encode(image_file.read())
     st.markdown(
     f"""
-    
+    <style>
+Streamlit Application Formatted Code & Revision Notes
+
+•
+
+•
+
+•
+
+•
+
+.stApp {{
+background-image: url("data:image/jpeg;base64,
+{encoded_string}");
+background-size: cover;
+background-position: center;
+}}
+/* Add your Liquid Glass CSS styling here */
+.liquid-glass {{
+background: rgba(255, 255, 255, 0.1);
+backdrop-filter: blur(10px);
+border-radius: 10px;
+padding: 20px;
+border: 1px solid rgba(255, 255, 255, 0.2);
+}}
+</style>
     """,
     unsafe_allow_html=True
     )
@@ -35,11 +60,11 @@ if st.button("GENERATE MY STUDY GUIDE"):
       st.warning("PLEASE PROVIDE BOTH AN API KEY AND YOUR NOTES!")
    else:
       client = genai.Client(api_key=api_key)
-prompt = f"Summarize the key concepts in bullet points, then create a 5-question multiple-choice quiz based on these notes. Notes: {notes}"
-max_retries = 3
-wait_time = 2 
+      prompt = f"Summarize the key concepts in bullet points, then create a 5-question multiple-choice quiz based on these notes. Notes: {notes}"
+      max_retries = 3
+      wait_time = 2 
     
-with st.spinner("GYAANVEER IS ANALYZING..."):
+      with st.spinner("GYAANVEER IS ANALYZING..."):
         for attempt in range(max_retries):
             try:
                 response = client.models.generate_content(
