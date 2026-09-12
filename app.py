@@ -25,3 +25,36 @@ except Exception as e:
 
 # 3. The Invisible Spacer to push elements below the logo
 st.markdown("", unsafe_allow_html=True)
+
+st.markdown("👉 GET YOUR FREE API KEY HERE",
+unsafe_allow_html=True
+)
+api_key = st.text_input("ENTER YOUR GEMINI API KEY:", type="password")
+notes = st.text_area("PASTE YOUR STUDY NOTES HERE:", height=150)
+
+if st.button("GENERATE MY STUDY GUIDE"):
+   if not api_key or not notes:
+      st.warning("PLEASE PROVIDE BOTH AN API KEY AND YOUR NOTES!")
+else:
+   client = genai.Client(api_key=api_key)
+prompt = f"Summarize the key concepts in bullet points, then create a 5-question multiple-choice quiz based on these notes. Notes: {notes}"
+max_retries = 3
+wait_time = 2 
+    
+with st.spinner("GYAANVEER IS ANALYZING..."):
+        for attempt in range(max_retries):
+            try:
+                response = client.models.generate_content(
+                    model="gemini-3.6-flash",
+                    contents=prompt
+                )
+                # Result box also styled as liquid glass
+                st.markdown(f"{response.text}", unsafe_allow_html=True) 
+                break
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    st.toast(f"Server busy. Retrying... (Attempt {attempt + 1}/{max_retries})")
+                    time.sleep(wait_time)
+                    wait_time *= 2 
+                else:
+                    st.error(f"Error: {e}")
