@@ -13,31 +13,21 @@ def add_bg_from_local(image_file):
     st.markdown(
     f"""
     <style>
-Streamlit Application Formatted Code & Revision Notes
-
-•
-
-•
-
-•
-
-•
-
-.stApp {{
-background-image: url("data:image/jpeg;base64,
-{encoded_string}");
-background-size: cover;
-background-position: center;
-}}
-/* Add your Liquid Glass CSS styling here */
-.liquid-glass {{
-background: rgba(255, 255, 255, 0.1);
-backdrop-filter: blur(10px);
-border-radius: 10px;
-padding: 20px;
-border: 1px solid rgba(255, 255, 255, 0.2);
-}}
-</style>
+    .stApp {{
+        background-image: url("data:image/jpeg;base64,
+        {encoded_string}");
+        background-size: cover;
+        background-position: center;
+    }}
+    /* Add your Liquid Glass CSS styling here */
+    .liquid-glass {{
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }}
+    </style>
     """,
     unsafe_allow_html=True
     )
