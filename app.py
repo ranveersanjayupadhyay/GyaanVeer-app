@@ -13,7 +13,7 @@ def add_bg_from_local(image_file):
         encoded_string = base64.b64encode(file.read()).decode()
         
     st.markdown(
-        f\"\"\"
+        f"""
         <style>
         .stApp {{
             background-image: url("data:image/jpeg;base64,{encoded_string}");
@@ -29,7 +29,7 @@ def add_bg_from_local(image_file):
             border: 1px solid rgba(255, 255, 255, 0.2);
         }}
         </style>
-        \"\"\",
+        """,
         unsafe_allow_html=True
     )
 # Apply the background
