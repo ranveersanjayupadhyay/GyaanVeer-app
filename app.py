@@ -26,17 +26,15 @@ except Exception as e:
 # 3. The Invisible Spacer to push elements below the logo
 st.markdown("", unsafe_allow_html=True)
 
-st.markdown("👉 GET YOUR FREE API KEY HERE",
-unsafe_allow_html=True
-)
+st.markdown("👉 GET YOUR FREE API KEY HERE",unsafe_allow_html=True)
 api_key = st.text_input("ENTER YOUR GEMINI API KEY:", type="password")
 notes = st.text_area("PASTE YOUR STUDY NOTES HERE:", height=150)
 
 if st.button("GENERATE MY STUDY GUIDE"):
    if not api_key or not notes:
       st.warning("PLEASE PROVIDE BOTH AN API KEY AND YOUR NOTES!")
-else:
-   client = genai.Client(api_key=api_key)
+   else:
+      client = genai.Client(api_key=api_key)
 prompt = f"Summarize the key concepts in bullet points, then create a 5-question multiple-choice quiz based on these notes. Notes: {notes}"
 max_retries = 3
 wait_time = 2 
