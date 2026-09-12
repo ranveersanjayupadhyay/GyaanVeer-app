@@ -63,7 +63,7 @@ if st.button("GENERATE MY STUDY GUIDE"):
                     contents=prompt
                 )
                 # Result box also styled as liquid glass
-                st.markdown(f"{response.text}", unsafe_allow_html=True) 
+                st.markdown(f"{response.text}", unsafe_allow_html=True)
                 break
             except Exception as e:
                 if attempt < max_retries - 1:
