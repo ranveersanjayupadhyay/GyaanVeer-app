@@ -39,7 +39,7 @@ except Exception as e:
     st.warning("Please upload your image and name it 'bg.jpg'")
 
 # 3. The Invisible Spacer to push elements below the logo
-st.markdown("<div style='height: 450px;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height: 250px;'></div>", unsafe_allow_html=True)
 st.markdown(" 👉[GET YOUR FREE API KEY HERE](https://aistudio.google.com/app/apikey)", unsafe_allow_html=True)
 api_key = st.text_input("ENTER YOUR GEMINI API KEY:", type="password")
 notes = st.text_area("PASTE YOUR STUDY NOTES HERE:", height=150)
@@ -69,10 +69,6 @@ if st.button("GENERATE MY STUDY GUIDE"):
                 )
                 # Result box also styled as liquid glass
                 st.markdown(f"{response.text}", unsafe_allow_html=True)
-                st.markdown(
-                    f"<div class='liquid-glass'>{response.text}</div>",
-                    unsafe_allow_html=True
-                )
                 break
             except Exception as e:
                 if attempt < max_retries - 1:
