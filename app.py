@@ -14,7 +14,7 @@ def add_bg_from_local(image_file):
         f"""
         <style>
         .stApp {{
-             background-image: url("data:image/jpeg;base64,
+             background-image: /workspaces/codespaces-blank/bg.jpg,
              {encoded_string}");
              background-size: cover;
              background-position: center;
