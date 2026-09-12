@@ -40,7 +40,7 @@ except Exception as e:
 
 # 3. The Invisible Spacer to push elements below the logo
 st.markdown("<br><br>", unsafe_allow_html=True)
-st.markdown(" [GET YOUR FREE API KEY HERE](https://aistudio.google.com/app/apikey)", unsafe_allow_html=True)
+st.markdown(" 👉[GET YOUR FREE API KEY HERE](https://aistudio.google.com/app/apikey)", unsafe_allow_html=True)
 api_key = st.text_input("ENTER YOUR GEMINI API KEY:", type="password")
 notes = st.text_area("PASTE YOUR STUDY NOTES HERE:", height=150)
 
